@@ -1,9 +1,13 @@
 FROM python:3-alpine
 
-ADD requirements.txt /tmp/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 
 RUN pip install -r /tmp/requirements.txt
 
-ADD app.py /var/server/app.py
+WORKDIR /app
 
-CMD python /var/server/app.py
+RUN rm -rf /tmp/*
+
+COPY app.py ./app.py
+
+CMD python ./app.py

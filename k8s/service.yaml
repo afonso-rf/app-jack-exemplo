@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: <>
-  namespace: <>
+  name: service-app-week2
+  namespace: aluno-afonso
 spec:
   ports:
   - name: http
-    port: 5000
+    port: 80
     protocol: TCP
     targetPort: 5000
   selector:
-    <>: <>
-  sessionAffinity: None
+    app: app
   type: ClusterIP

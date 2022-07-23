@@ -1,14 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: <>
-  namespace: <>
+  name: ing-app-week2
+  namespace: aluno-afonso
 spec:
   rules:
-  - host: <>
+  - host: app-afonso.aula.jac.bsb.br
     http:
       paths:
       - backend:
-          serviceName: <>
-          servicePort: 5000
-        pathType: ImplementationSpecific
+          service:
+            name: service-app-week2
+            port: 80
+        path: /
+        pathType: Prefix
