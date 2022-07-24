@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app
+      app: app-week
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: app
+        app: app-week
     spec:
       securityContext:
         runAsUser: 1000
@@ -31,7 +31,20 @@ spec:
         - containerPort: 5000
           name: http
           protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /um
+            port: http
+          failureThreshold: 3
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /um
+            port: http
+          failureThreshold: 10
+          periodSeconds: 10
         resources: {}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities: {}
+
