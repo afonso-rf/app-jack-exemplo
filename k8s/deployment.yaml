@@ -3,12 +3,10 @@ kind: Deployment
 metadata:
   name: deploy-app-week2
   namespace: aluno-afonso
-#  labels:
-#    app: app
+  labels:
+    aluno: afonso
 spec:
-#  progressDeadlineSeconds: 600
   replicas: 1
-#  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: app
@@ -26,7 +24,7 @@ spec:
         runAsUser: 1000
         fsGroup: 1000
       containers:
-      - image: 
+      - image: afonsorf/app-jack-week:v1
         imagePullPolicy: Always
         name: app-week2
         ports:
@@ -37,10 +35,3 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
           capabilities: {}
-#          privileged: false
-#          readOnlyRootFilesystem: false
-#          runAsNonRoot: false
-#        stdin: true
-#        tty: true
-#      restartPolicy: Always
-
